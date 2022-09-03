@@ -1,0 +1,92 @@
+.navigation__links--wrapper {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  grid-area: ribbon / ribbon;
+}
+
+.link {
+  cursor: pointer;
+  border: none;
+  font-size: 1.5rem;
+  background: rgba(242, 247, 254, 0);
+  padding: 8px 30px;
+  border-radius: 6px;
+  transition: background 0.3s ease 0s;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.link--active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.header__navigation--wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  justify-content: space-between;
+  background-color: #0a146e;
+  padding: 10px;
+  background: rgb(10, 20, 110);
+  background: -moz-linear-gradient(
+    left,
+    rgb(10, 20, 110) 0%,
+    rgb(10, 20, 110) 50%,
+    rgb(13, 28, 149) 100%
+  );
+  background: -webkit-linear-gradient(
+    left,
+    rgb(10, 20, 110) 0%,
+    rgb(10, 20, 110) 50%,
+    rgb(13, 28, 149) 100%
+  );
+  background: linear-gradient(
+    to right,
+    rgb(10, 20, 110) 0%,
+    rgb(10, 20, 110) 50%,
+    rgb(13, 28, 149) 100%
+  );
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.logo--wrapper {
+  max-width: 60px;
+}
+
+.navigation--buuton {
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  min-width: 0px;
+  cursor: pointer;
+  margin: 0px;
+  outline-offset: 4px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  padding: 6px 12px;
+  font-size: 1.4rem;
+  color: rgb(255, 255, 255);
+  background: rgb(0, 113, 235);
+  border: 2px solid rgb(0, 113, 235);
+  border-radius: 8px;
+}
+
+.navigation__btn--wrapper {
+  display: flex;
+  gap: 8px;
+  -webkit-box-align: center;
+  align-items: center;
+  grid-area: trailer / trailer / trailer / trailer;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+}
