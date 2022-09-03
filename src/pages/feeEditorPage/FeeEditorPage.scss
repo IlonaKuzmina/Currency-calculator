@@ -1,5 +1,5 @@
 .page__container {
-  height: 75%;
+  height: 90%;
   position: relative;
   margin-bottom: 100px;
 }
@@ -33,6 +33,10 @@
   font-size: 2.4rem;
 }
 
+.feeeditorpage__paragraph {
+  color: rgb(255, 255, 255);
+}
+
 .editor__wrapper {
   border-radius: 8px;
   background-color: rgb(255, 255, 255);
@@ -41,7 +45,7 @@
   max-width: max-content;
   position: absolute;
   top: 200px;
-  padding: 48px;
+  padding: 0 48px 48px 48px;
   margin-left: auto;
   margin-right: auto;
   left: 0;
@@ -98,7 +102,8 @@
   color: rgb(20, 30, 55);
 }
 
-.add__button {
+.add__button,
+.delete__button {
   cursor: pointer;
   border: none;
   font-size: 1.5rem;
@@ -113,9 +118,37 @@
   }
 }
 
+.delete__button:disabled {
+  background-color: gray;
+}
+
 .add__btn--wrapper {
   border-radius: 6px;
   background-color: rgb(10, 20, 110);
+}
+
+.editor--title {
+  margin: 48px 0px 20px;
+}
+
+.fee__list--container {
+  display: grid;
+  grid-template-columns: 35% 65%;
+  flex-direction: row;
+  align-items: center;
+  justify-items: start;
+}
+
+.delete__btn--wrapper {
+  display: inline-block;
+  border-radius: 6px;
+  background-color: rgb(10, 20, 110);
+}
+
+.delete__fee--container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
 }
 
 @media screen and (max-width: 600px) {

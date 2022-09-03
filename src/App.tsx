@@ -7,6 +7,8 @@ import { CurrencyConverterPage } from './pages/currencyConverterPage/CurrencyCon
 import { FeeEditorPage } from './pages/feeEditorPage/FeeEditorPage';
 import { Header } from './components/header/Header';
 import { Footer } from './components/footer/Footer';
+import { Provider } from 'react-redux';
+import store from './reducer/store';
 
 function App() {
 
@@ -27,15 +29,17 @@ function App() {
   }
 
   return (
-    <Router>
-      <Header></Header>
-      <Routes>
-        <Route path="/" element={<FeeEditorPage />} />
-        <Route path="/editor" element={<FeeEditorPage />} />
-        <Route path="/calculator" element={<CurrencyConverterPage />} />
-      </Routes>
-      <Footer></Footer>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Header></Header>
+        <Routes>
+          <Route path="/" element={<FeeEditorPage />} />
+          <Route path="/editor" element={<FeeEditorPage />} />
+          <Route path="/calculator" element={<CurrencyConverterPage />} />
+        </Routes>
+        <Footer></Footer>
+      </Router>
+    </Provider>
   );
 }
 
