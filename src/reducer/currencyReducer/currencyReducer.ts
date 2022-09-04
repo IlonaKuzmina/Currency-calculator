@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type SelectedCurrencyPair = {
+export type SelectedCurrencyPair = {
   base: string;
   fromCurrency: string;
   toCurrency: string;

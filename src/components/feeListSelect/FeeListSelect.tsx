@@ -1,0 +1,38 @@
+import React, { FC, ReactNode } from 'react'
+import './FeeListSelect.scss';
+import { SelectedCurrencyPair } from '../../../src/reducer/currencyReducer/currencyReducer'
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducer/store';
+
+type CurrencySelectProps = {
+    onChangeHandler: (option: string) => void;
+    children?: ReactNode;
+}
+
+const FeeListSelect: FC<CurrencySelectProps> = ({ onChangeHandler}) => {
+    const currencyPairWithFee = useSelector((state: RootState) => state.currency.currencyPairFeeInfo);
+
+    return (
+        <>
+            <select
+                className="select__fee--list"
+                onChange={(e) => onChangeHandler(e.target.value)}
+            >
+                <option defaultChecked>Currency pair with exchange fee</option>
+                {currencyPairWithFee.map(
+                    ({ toCurrency, fromCurrency, newFee }: SelectedCurrencyPair, index: number) => (
+                        <option value={index} key={index}>
+                            <span>{index + 1}.</span>
+                            <span>
+                                <b>{Number(newFee) * 100}%</b>
+                            </span>
+                            <span>{fromCurrency}</span> - <span>{toCurrency}</span>
+                        </option>
+                    )
+                )}
+            </select>
+        </>
+    )
+}
+
+export default FeeListSelect;

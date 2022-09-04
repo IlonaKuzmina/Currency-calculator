@@ -17,3 +17,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@media screen and (max-width: 500px) {
+  html,
+#root,
+body {
+  height: 100%;
+}
+}

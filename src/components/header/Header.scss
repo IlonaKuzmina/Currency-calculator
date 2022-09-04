@@ -58,29 +58,6 @@
   max-width: 60px;
 }
 
-.navigation--buuton {
-  display: inline-flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-  min-width: 0px;
-  cursor: pointer;
-  margin: 0px;
-  outline-offset: 4px;
-  font-weight: 600;
-  text-align: center;
-  text-decoration: none;
-  transition-property: background-color, border-color;
-  transition-duration: 0.3s;
-  padding: 6px 12px;
-  font-size: 1.4rem;
-  color: rgb(255, 255, 255);
-  background: rgb(0, 113, 235);
-  border: 2px solid rgb(0, 113, 235);
-  border-radius: 8px;
-}
-
 .navigation__btn--wrapper {
   display: flex;
   gap: 8px;
