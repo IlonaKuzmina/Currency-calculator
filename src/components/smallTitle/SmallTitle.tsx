@@ -6,7 +6,7 @@ type SmallTitleProps = {
 }
 
 const SmallTitle: FC<SmallTitleProps> = ({ children }) => (
-    <h2 className="title">{children}</h2>
+    <h2 className="small__title--title">{children}</h2>
 );
 
 export default SmallTitle;

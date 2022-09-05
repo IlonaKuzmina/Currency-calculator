@@ -1,25 +1,27 @@
-import React, { FC, useEffect, useRef } from 'react'
-import { useDispatch} from 'react-redux';
+import React, { FC, useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { addNewFeeToList } from '../../reducer/currencyFeeReducer/currencyFeeReducer';
-import { AppDispatch} from '../../reducer/store';
-import Button from '../button/Button';
-import CurrencySelect from '../currencySelect/CurrencySelect';
-import Label from '../label/Label';
-import SmallTitle from '../smallTitle/SmallTitle';
+import { AppDispatch } from '../../reducer/store';
+import Button from '../Button/Button';
+import CurrencySelect from '../CurrencySelect/CurrencySelect';
+import Label from '../Label/Label';
+import SmallTitle from '../SmallTitle/SmallTitle';
 import './ConvertionsFeesAdderContainer.scss';
-import { SelectedCurrencyPair } from '../../modals/currencyFeeModal';
+import { SelectedCurrencyPair } from '../../types/currencyFeeTypes';
 
 type ConvertionsFeesAdderContainerProps = {
     selectedCurrencyPair: SelectedCurrencyPair;
-    updateNewFeeHandler: (e: string) => void;
-    updateFromCurrencyHandler: (e: string) => void;
-    updateToCurrencyHandler: (e: string) => void;
+    updateNewFeeHandler: (value: string) => void;
+    updateFromCurrencyHandler: (value: string) => void;
+    updateToCurrencyHandler: (value: string) => void;
 }
 
-const ConvertionsFeesAdderContainer: FC<ConvertionsFeesAdderContainerProps> = ({ updateFromCurrencyHandler, 
+const ConvertionsFeesAdderContainer: FC<ConvertionsFeesAdderContainerProps> = ({ updateFromCurrencyHandler,
     updateToCurrencyHandler, selectedCurrencyPair, updateNewFeeHandler }) => {
     const dispatch = useDispatch<AppDispatch>();
     const focusInput = useRef<HTMLInputElement | null>(null);
+    const [firstFromValue, setFirstFromValue] = useState('EUR');
+    const [firstToValue, setFirstToValue] = useState('USD');
 
     useEffect(() => {
         if (focusInput.current) {
@@ -42,19 +44,21 @@ const ConvertionsFeesAdderContainer: FC<ConvertionsFeesAdderContainerProps> = ({
                             min="0"
                             max="0.9"
                             pattern="^\d*(\.\d{0,2})?$"
-                            step="0.01"
-                        />
+                            step="0.01" />
                     </div>
 
                     <div>
                         <Label label="From" /> <br />
                         <CurrencySelect
-                            onChangeHandler={(e) => { updateFromCurrencyHandler(e); }} />
+                            selectType={true}
+                            firstFromValue={firstFromValue}
+                            firstToValue={firstToValue}
+                            onChangeHandler={updateFromCurrencyHandler} />
                     </div>
 
                     <div>
                         <Label /> <br />
-                        <Button btnClass="swaper" onClick={() => { }}>
+                        <Button btnClass="swaper">
                             <img className="swaper__image" src="/assets/logo/swap.png" alt="swap"></img>
                         </Button>
                     </div>
@@ -62,7 +66,10 @@ const ConvertionsFeesAdderContainer: FC<ConvertionsFeesAdderContainerProps> = ({
                     <div>
                         <Label label="To" /> <br />
                         <CurrencySelect
-                            onChangeHandler={(e) => { updateToCurrencyHandler(e); }} />
+                            selectType={false}
+                            firstFromValue={firstFromValue}
+                            firstToValue={firstToValue}
+                            onChangeHandler={updateToCurrencyHandler} />
                     </div>
 
                     <div>

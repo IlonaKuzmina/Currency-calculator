@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import Button from '../../components/button/Button'
-import CurrencySelect from '../../components/currencySelect/CurrencySelect'
-import Label from '../../components/label/Label'
-import { MainPageWrapper } from '../../components/mainPageWrapper/MainPageWrapper'
-import { PageContentContainer } from '../../components/pageContentContainer/PageContentContainer'
-import PageHeader from '../../components/pageHeader/PageHeader'
-import SmallTitle from '../../components/smallTitle/SmallTitle'
+import Button from '../../components/Button/Button'
+import CurrencySelect from '../../components/CurrencySelect/CurrencySelect'
+import Label from '../../components/Label/Label'
+import { MainPageWrapper } from '../../components/MainPageWrapper/MainPageWrapper'
+import { PageContentContainer } from '../../components/PageContentContainer/PageContentContainer'
+import PageHeader from '../../components/PageHeader/PageHeader'
+import SmallTitle from '../../components/SmallTitle/SmallTitle'
 import { RootState } from '../../reducer/store'
 import './CurrencyConverterPage.scss'
 
@@ -14,10 +14,25 @@ export const CurrencyConverterPage = () => {
     const time = useSelector(({ currencyApi }: RootState) => currencyApi);
     const currencyName = useSelector(({ currencyApi }: RootState) => currencyApi);
     const currencyFeePair = useSelector(({ currencyFee }: RootState) => currencyFee);
+    const [enteredAmount, setEnteredAmount] = useState(0);
+    const [toCurrency, setToCurrency] = useState('');
+    const [fromCurrency, setFromCurrency] = useState('');
+    const [firstFromValue, setFirstFromValue] = useState('EUR');
+    const [firstToValue, setFirstToValue] = useState('USD');
 
-useEffect(()=>{
-    console.log(time.lastUpdateTime)
-    console.log(time.currencyNameRate)})
+    useEffect(() => { })
+
+    const updateFromCurrency = (option: string) => {
+        setFromCurrency(option)
+    }
+
+    const updatetoCurrency = (option: string) => {
+        setToCurrency(option)
+    }
+
+    const findToCurrencyRate = () => {
+
+    }
 
     return (
         <MainPageWrapper>
@@ -31,35 +46,50 @@ useEffect(()=>{
                         <div className="currency__container">
                             <div>
                                 <Label label="Amount" /> <br />
-                                <input className='currency__input' type="number" onChange={(e) => { }} />
+                                <input className='currency__input' type="number" onChange={(e) => { setEnteredAmount(Number(e.target.value)) }} />
                             </div>
 
                             <div>
                                 <Label label="From" /> <br />
-                                <CurrencySelect onChangeHandler={() => { }}></CurrencySelect>
+                                <CurrencySelect
+                                    selectType={true}
+                                    firstFromValue={firstFromValue}
+                                    firstToValue={firstToValue}
+                                    onChangeHandler={(value) => { updateFromCurrency(value) }}></CurrencySelect>
                             </div>
 
                             <div>
                                 <Label /> <br />
-                                <Button btnClass="swaper" onClick={() => { }}>
+                                <Button btnClass="swaper">
                                     <img className="swaper__image" src="/assets/logo/swap.png" alt="swap"></img>
                                 </Button>
                             </div>
 
                             <div>
                                 <Label label="To" /> <br />
-                                <CurrencySelect onChangeHandler={() => { }}></CurrencySelect>
+                                <CurrencySelect
+                                    selectType={false}
+                                    firstFromValue={firstFromValue}
+                                    firstToValue={firstToValue}
+                                    onChangeHandler={(value) => { updatetoCurrency(value) }}></CurrencySelect>
                             </div>
 
                             <div>
                                 <Label /> <br />
-                                <Button label="Convert" btnClass="add" wrapperClass="add__btn--wrapper" onClick={() => { }} />
+                                <Button label="Convert" btnClass="add" wrapperClass="add__btn--wrapper" />
                             </div>
                         </div>
                     </form>
                     <div>
                         <p>Last update time: <span>{time.lastUpdateTime}</span></p>
                     </div>
+
+                    <div>
+                        {/* {(enteredAmount - enteredAmount*currencyFeePair.baseFeeRate)*selectedToCuurency.rate} */}
+                        {/* (amount - amount * fee) * rate */}
+                        <span>{fromCurrency}+{toCurrency}</span>
+                    </div>
+
                 </div>
 
             </PageContentContainer>

@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react'
 import './FeeListSelect.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducer/store';
-import { SelectedCurrencyPair } from '../../modals/currencyFeeModal';
+import { SelectedCurrencyPair } from '../../types/currencyFeeTypes';
 
 type CurrencySelectProps = {
     onChangeHandler: (option: string) => void;
@@ -16,17 +16,12 @@ const FeeListSelect: FC<CurrencySelectProps> = ({ onChangeHandler }) => {
         <>
             <select
                 className="select__fee--list"
-                onChange={(e) => onChangeHandler(e.target.value)}
-            >
+                onChange={(e) => onChangeHandler(e.target.value)}>
                 <option defaultChecked>Currency pair with exchange fee</option>
                 {currencyPairWithFee.currencyPairFeeInfo.map(
                     ({ toCurrency, fromCurrency, newFee }: SelectedCurrencyPair, index: number) => (
-                        <option value={index} key={index}>
-                            <span>{index + 1}.</span>
-                            <span>
-                                <b>{Number(newFee) * 100}%</b>
-                            </span>
-                            <span>{fromCurrency}</span> - <span>{toCurrency}</span>
+                        <option value={index} key={index} className="option">
+                            {fromCurrency} - {toCurrency}{' '}({Number(newFee) * 100}%)
                         </option>
                     )
                 )}

@@ -5,8 +5,6 @@ type PageContentContainerProps = {
     children: React.ReactNode;
 }
 
-export const PageContentContainer: FC<PageContentContainerProps> = ({ children }) => {
-    return (
-        <div className="page__content--wrapper">{children}</div>
-    )
-}
+export const PageContentContainer: FC<PageContentContainerProps> = ({ children }) => (
+    <div className="page__content--wrapper">{children}</div>
+)

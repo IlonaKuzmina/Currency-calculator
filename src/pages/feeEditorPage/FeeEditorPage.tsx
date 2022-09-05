@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch} from "react-redux";
-import { AppDispatch} from "../../reducer/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../reducer/store";
 import { deleteFeeFromList } from "../../reducer/currencyFeeReducer/currencyFeeReducer";
 import "./FeeEditorPage.scss";
-import PageHeader from "../../components/pageHeader/PageHeader";
-import { PageContentContainer } from "../../components/pageContentContainer/PageContentContainer";
-import ConversionFeesListContainer from "../../components/conversionFeesListContainer/ConversionFeesListContainer";
-import ConvertionsFeesAdderContainer from "../../components/convertionsFeesAdderContainer/ConvertionsFeesAdderContainer";
-import { MainPageWrapper } from "../../components/mainPageWrapper/MainPageWrapper";
-import { SelectedCurrencyPair } from "../../modals/currencyFeeModal";
-import { getAllCurrencyFromApi } from "../../reducer/API/currencyApiReducer";
+import PageHeader from "../../components/PageHeader/PageHeader";
+import { PageContentContainer } from "../../components/PageContentContainer/PageContentContainer";
+import ConversionFeesListContainer from "../../components/ConversionFeesListContainer/ConversionFeesListContainer";
+import ConvertionsFeesAdderContainer from "../../components/ConvertionsFeesAdderContainer/ConvertionsFeesAdderContainer";
+import { MainPageWrapper } from "../../components/MainPageWrapper/MainPageWrapper";
+import { SelectedCurrencyPair } from "../../types/currencyFeeTypes";
+import { getAllCurrencyFromApi } from "../../reducer/currencyApiReducer/currencyApiReducer";
 
 export const FeeEditorPage = () => {
   const focusInput = useRef<HTMLInputElement | null>(null);

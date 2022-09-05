@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SelectedCurrencyPair } from "../../modals/currencyFeeModal";
+import { SelectedCurrencyPair } from "../../types/currencyFeeTypes";
 
 export const currencyFeeReducer = createSlice({
   name: "currencyFee",

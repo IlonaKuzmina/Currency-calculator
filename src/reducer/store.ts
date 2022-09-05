@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import currencyApiReducer from './API/currencyApiReducer';
+import currencyApiReducer from './currencyApiReducer/currencyApiReducer';
 import currencyFeeReducer from './currencyFeeReducer/currencyFeeReducer';
 
 const store = configureStore({

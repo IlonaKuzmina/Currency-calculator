@@ -5,12 +5,8 @@ type LabelProps = {
     label?: string
 }
 
-export const Label: FC<LabelProps> = ({ label }) => {
-    return (
-        <>
-            <label className="label" htmlFor="amount">{label}</label>
-        </>
-    )
-}
+const Label: FC<LabelProps> = ({ label }) => (
+    <label className="label" htmlFor="amount">{label}</label>
+)
 
 export default Label;

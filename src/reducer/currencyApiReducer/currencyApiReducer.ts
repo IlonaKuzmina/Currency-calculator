@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { parseXmlToJs } from "../../../src/xmlParser/xmlParser";
+import { parseXmlToJs } from "../../xmlParser/xmlParser";
 
 export const currencyApiReducer = createSlice({
   name: "currencyApi",

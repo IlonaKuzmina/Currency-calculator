@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react'
 import './Button.scss';
 
 type ButtonProps = {
-    onClick: () => void;
+    onClick?: () => void;
     label?: string;
     btnClass: 'delete' | 'add' | 'primary' | 'swaper',
     children?: ReactNode;
@@ -18,7 +18,7 @@ const Button: FC<ButtonProps> = ({ onClick, label, btnClass, children, wrapperCl
             onClick={onClick}>
             {label}{children}
         </button>
-    </div >
+    </div>
 
 )
 
