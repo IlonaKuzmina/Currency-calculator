@@ -1,14 +1,19 @@
-import React, { FC, ReactNode } from 'react'
+import React, { FC, ReactNode, useEffect } from 'react'
 import './CurrencySelect.scss';
-import { Currency } from "../../data/fakeDATA";
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducer/store';
+import { CubeCurrencyResult } from '../../modals/apiResultModal';
 
 type CurrencySelectProps = {
-    currency: Currency[];
     onChangeHandler: (option: string) => void;
     children?: ReactNode;
 }
 
-const CurrencySelect: FC<CurrencySelectProps> = ({ currency, onChangeHandler, children }) => {
+const CurrencySelect: FC<CurrencySelectProps> = ({ onChangeHandler, children }) => {
+    const currencyName = useSelector(({ currencyApi }: RootState) => currencyApi);
+
+    useEffect(()=>{})
+
     return (
         <>
             <select
@@ -19,9 +24,8 @@ const CurrencySelect: FC<CurrencySelectProps> = ({ currency, onChangeHandler, ch
                 }}
             >
                 {children}
-                {currency.map((cur) => (
-                    <option value={cur.currency}>{cur.currency}</option>
-                ))}
+                {currencyName.currencyNameRate && currencyName.currencyNameRate.map((cur: CubeCurrencyResult) => (
+                    <option key={cur['@_currency']} value={cur['@_currency']}>{cur['@_currency']}</option>))}
             </select>
         </>
     )

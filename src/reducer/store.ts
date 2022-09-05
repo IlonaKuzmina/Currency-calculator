@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import currencyApiReducer from './API/currencyApiReducer';
-import currencyReducer from './currencyReducer/currencyReducer';
+import currencyFeeReducer from './currencyFeeReducer/currencyFeeReducer';
 
 const store = configureStore({
   reducer: {
-    currency: currencyReducer,
+    currencyFee: currencyFeeReducer,
     currencyApi: currencyApiReducer,
   },
 

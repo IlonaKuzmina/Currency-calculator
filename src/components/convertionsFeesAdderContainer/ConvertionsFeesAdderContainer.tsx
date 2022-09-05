@@ -1,8 +1,7 @@
 import React, { FC, useEffect, useRef } from 'react'
-import { useDispatch } from 'react-redux';
-import { addNewFeeToList } from '../../reducer/currencyReducer/currencyReducer';
-import { AppDispatch } from '../../reducer/store';
-import { Currency } from "../../data/fakeDATA";
+import { useDispatch} from 'react-redux';
+import { addNewFeeToList } from '../../reducer/currencyFeeReducer/currencyFeeReducer';
+import { AppDispatch} from '../../reducer/store';
 import Button from '../button/Button';
 import CurrencySelect from '../currencySelect/CurrencySelect';
 import Label from '../label/Label';
@@ -11,14 +10,14 @@ import './ConvertionsFeesAdderContainer.scss';
 import { SelectedCurrencyPair } from '../../modals/currencyFeeModal';
 
 type ConvertionsFeesAdderContainerProps = {
-    currency: Currency[];
     selectedCurrencyPair: SelectedCurrencyPair;
     updateNewFeeHandler: (e: string) => void;
     updateFromCurrencyHandler: (e: string) => void;
     updateToCurrencyHandler: (e: string) => void;
 }
 
-const ConvertionsFeesAdderContainer: FC<ConvertionsFeesAdderContainerProps> = ({ currency, updateFromCurrencyHandler, updateToCurrencyHandler, selectedCurrencyPair, updateNewFeeHandler }) => {
+const ConvertionsFeesAdderContainer: FC<ConvertionsFeesAdderContainerProps> = ({ updateFromCurrencyHandler, 
+    updateToCurrencyHandler, selectedCurrencyPair, updateNewFeeHandler }) => {
     const dispatch = useDispatch<AppDispatch>();
     const focusInput = useRef<HTMLInputElement | null>(null);
 
@@ -50,7 +49,6 @@ const ConvertionsFeesAdderContainer: FC<ConvertionsFeesAdderContainerProps> = ({
                     <div>
                         <Label label="From" /> <br />
                         <CurrencySelect
-                            currency={currency}
                             onChangeHandler={(e) => { updateFromCurrencyHandler(e); }} />
                     </div>
 
@@ -64,7 +62,6 @@ const ConvertionsFeesAdderContainer: FC<ConvertionsFeesAdderContainerProps> = ({
                     <div>
                         <Label label="To" /> <br />
                         <CurrencySelect
-                            currency={currency}
                             onChangeHandler={(e) => { updateToCurrencyHandler(e); }} />
                     </div>
 

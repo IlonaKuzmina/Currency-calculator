@@ -9,8 +9,8 @@ type CurrencySelectProps = {
     children?: ReactNode;
 }
 
-const FeeListSelect: FC<CurrencySelectProps> = ({ onChangeHandler}) => {
-    const currencyPairWithFee = useSelector((state: RootState) => state.currency.currencyPairFeeInfo);
+const FeeListSelect: FC<CurrencySelectProps> = ({ onChangeHandler }) => {
+    const currencyPairWithFee = useSelector(({ currencyFee }: RootState) => currencyFee);
 
     return (
         <>
@@ -19,7 +19,7 @@ const FeeListSelect: FC<CurrencySelectProps> = ({ onChangeHandler}) => {
                 onChange={(e) => onChangeHandler(e.target.value)}
             >
                 <option defaultChecked>Currency pair with exchange fee</option>
-                {currencyPairWithFee.map(
+                {currencyPairWithFee.currencyPairFeeInfo.map(
                     ({ toCurrency, fromCurrency, newFee }: SelectedCurrencyPair, index: number) => (
                         <option value={index} key={index}>
                             <span>{index + 1}.</span>

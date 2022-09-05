@@ -1,18 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Currency, getCurrencyBloks } from "../../data/fakeDATA";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../reducer/store";
-import { deleteFeeFromList } from "../../reducer/currencyReducer/currencyReducer";
-import { SelectedCurrencyPair } from "../../../src/reducer/currencyReducer/currencyReducer";
+import { useDispatch} from "react-redux";
+import { AppDispatch} from "../../reducer/store";
+import { deleteFeeFromList } from "../../reducer/currencyFeeReducer/currencyFeeReducer";
 import "./FeeEditorPage.scss";
 import PageHeader from "../../components/pageHeader/PageHeader";
 import { PageContentContainer } from "../../components/pageContentContainer/PageContentContainer";
 import ConversionFeesListContainer from "../../components/conversionFeesListContainer/ConversionFeesListContainer";
 import ConvertionsFeesAdderContainer from "../../components/convertionsFeesAdderContainer/ConvertionsFeesAdderContainer";
 import { MainPageWrapper } from "../../components/mainPageWrapper/MainPageWrapper";
+import { SelectedCurrencyPair } from "../../modals/currencyFeeModal";
+import { getAllCurrencyFromApi } from "../../reducer/API/currencyApiReducer";
 
 export const FeeEditorPage = () => {
-  const [currency, setCurrency] = useState<Currency[]>([]);
   const focusInput = useRef<HTMLInputElement | null>(null);
   const [buttonStatus, setButtonStatus] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
@@ -27,11 +26,10 @@ export const FeeEditorPage = () => {
 
   useEffect(() => {
     buttonDisableHandler();
+    dispatch(getAllCurrencyFromApi())
   },)
 
   useEffect(() => {
-    const item = getCurrencyBloks();
-    setCurrency(item);
     if (focusInput.current) {
       focusInput.current.focus();
     }
@@ -74,7 +72,6 @@ export const FeeEditorPage = () => {
           updateNewFeeHandler={(e) => { updateNewFee(e); }}
           updateFromCurrencyHandler={(e) => { updateFromCurrency(e); }}
           updateToCurrencyHandler={(e) => { updateToCurrency(e); }}
-          currency={currency}
           selectedCurrencyPair={selectedCurrencyPair} />
 
         <ConversionFeesListContainer

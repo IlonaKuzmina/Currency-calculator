@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import Button from '../../components/button/Button'
 import CurrencySelect from '../../components/currencySelect/CurrencySelect'
 import Label from '../../components/label/Label'
@@ -6,9 +7,18 @@ import { MainPageWrapper } from '../../components/mainPageWrapper/MainPageWrappe
 import { PageContentContainer } from '../../components/pageContentContainer/PageContentContainer'
 import PageHeader from '../../components/pageHeader/PageHeader'
 import SmallTitle from '../../components/smallTitle/SmallTitle'
+import { RootState } from '../../reducer/store'
 import './CurrencyConverterPage.scss'
 
 export const CurrencyConverterPage = () => {
+    const time = useSelector(({ currencyApi }: RootState) => currencyApi);
+    const currencyName = useSelector(({ currencyApi }: RootState) => currencyApi);
+    const currencyFeePair = useSelector(({ currencyFee }: RootState) => currencyFee);
+
+useEffect(()=>{
+    console.log(time.lastUpdateTime)
+    console.log(time.currencyNameRate)})
+
     return (
         <MainPageWrapper>
             <PageHeader
@@ -26,7 +36,7 @@ export const CurrencyConverterPage = () => {
 
                             <div>
                                 <Label label="From" /> <br />
-                                <CurrencySelect currency={[]} onChangeHandler={() => { }}></CurrencySelect>
+                                <CurrencySelect onChangeHandler={() => { }}></CurrencySelect>
                             </div>
 
                             <div>
@@ -38,7 +48,7 @@ export const CurrencyConverterPage = () => {
 
                             <div>
                                 <Label label="To" /> <br />
-                                <CurrencySelect currency={[]} onChangeHandler={() => { }}></CurrencySelect>
+                                <CurrencySelect onChangeHandler={() => { }}></CurrencySelect>
                             </div>
 
                             <div>
@@ -47,7 +57,11 @@ export const CurrencyConverterPage = () => {
                             </div>
                         </div>
                     </form>
+                    <div>
+                        <p>Last update time: <span>{time.lastUpdateTime}</span></p>
+                    </div>
                 </div>
+
             </PageContentContainer>
         </MainPageWrapper>
     )
