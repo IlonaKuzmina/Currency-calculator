@@ -27,7 +27,7 @@ export const FeeEditorPage = () => {
 
   useEffect(() => {
     buttonDisableHandler();
-  })
+  },)
 
   useEffect(() => {
     const item = getCurrencyBloks();

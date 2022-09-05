@@ -7,26 +7,28 @@ import { CurrencyConverterPage } from './pages/currencyConverterPage/CurrencyCon
 import { FeeEditorPage } from './pages/feeEditorPage/FeeEditorPage';
 import { Header } from './components/header/Header';
 import { Footer } from './components/footer/Footer';
-import { Provider } from 'react-redux';
-import store from './reducer/store';
+import { Provider, useDispatch } from 'react-redux';
+import store, { AppDispatch } from './reducer/store';
+import { getAllCurrencyFromApi } from './reducer/API/currencyApiReducer';
 
 function App() {
-
+  const dispatch = useDispatch<AppDispatch>();
+  
   useEffect(() => {
-    getAllCurr()
-  })
+    dispatch(getAllCurrencyFromApi())
+  },[])
 
-  const getAllCurr = () => {
-    axios.get("http://localhost:3000/api/stats/eurofxref/eurofxref-daily.xml")
-      .then((response) => {
-        const currency = response.data;
-        parseXmlToJs(currency);
-        // console.log(currency)
-      })
-      .catch((error) => {
-        console.error(`Error: ${error}`);
-      });
-  }
+  // const getAllCurr = () => {
+  //   axios.get("http://localhost:3000/api/stats/eurofxref/eurofxref-daily.xml")
+  //     .then((response) => {
+  //       const currency = response.data;
+  //       parseXmlToJs(currency);
+  //       // console.log(currency)
+  //     })
+  //     .catch((error) => {
+  //       console.error(`Error: ${error}`);
+  //     });
+  // }
 
   return (
     <Provider store={store}>

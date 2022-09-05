@@ -1,12 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-export type SelectedCurrencyPair = {
-  base: string;
-  fromCurrency: string;
-  toCurrency: string;
-  newFee: string;
-  defaultFee: boolean;
-};
+import { SelectedCurrencyPair } from "../../modals/currencyFeeModal";
 
 export const currencyReducer = createSlice({
   name: "currency",
@@ -15,6 +8,7 @@ export const currencyReducer = createSlice({
       ? JSON.parse(localStorage.getItem("currency") || "[]")
       : ([] as SelectedCurrencyPair[]),
     baseFeeRate: 0.5,
+    
   },
 
   reducers: {
@@ -44,6 +38,8 @@ export const currencyReducer = createSlice({
       console.log("reducer fee", action.payload);
       localStorage.setItem("currency", JSON.stringify(currencyPairFeeInfo));
     },
+
+    
   },
 });
 

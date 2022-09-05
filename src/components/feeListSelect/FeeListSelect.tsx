@@ -1,8 +1,8 @@
 import React, { FC, ReactNode } from 'react'
 import './FeeListSelect.scss';
-import { SelectedCurrencyPair } from '../../../src/reducer/currencyReducer/currencyReducer'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducer/store';
+import { SelectedCurrencyPair } from '../../modals/currencyFeeModal';
 
 type CurrencySelectProps = {
     onChangeHandler: (option: string) => void;

@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux';
-import { addNewFeeToList, SelectedCurrencyPair } from '../../reducer/currencyReducer/currencyReducer';
+import { addNewFeeToList } from '../../reducer/currencyReducer/currencyReducer';
 import { AppDispatch } from '../../reducer/store';
 import { Currency } from "../../data/fakeDATA";
 import Button from '../button/Button';
@@ -8,6 +8,7 @@ import CurrencySelect from '../currencySelect/CurrencySelect';
 import Label from '../label/Label';
 import SmallTitle from '../smallTitle/SmallTitle';
 import './ConvertionsFeesAdderContainer.scss';
+import { SelectedCurrencyPair } from '../../modals/currencyFeeModal';
 
 type ConvertionsFeesAdderContainerProps = {
     currency: Currency[];
