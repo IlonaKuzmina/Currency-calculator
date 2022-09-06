@@ -6,7 +6,7 @@ export const currencyApiReducer = createSlice({
   name: "currencyApi",
   initialState: {
     lastUpdateTime: localStorage.getItem("lastUpdateTime"),
-    currencyNameRate: JSON.parse(localStorage.getItem("currencyNameRate") || '{}'),
+    currencyNameRate: JSON.parse(localStorage.getItem("currencyNameRate") || "{}"),
   },
 
   reducers: {

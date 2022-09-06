@@ -4,10 +4,8 @@ import { SelectedCurrencyPair } from "../../types/currencyFeeTypes";
 export const currencyFeeReducer = createSlice({
   name: "currencyFee",
   initialState: {
-    currencyPairFeeInfo: localStorage.getItem("currencyFee")
-      ? JSON.parse(localStorage.getItem("currencyFee") || "[]")
-      : ([] as SelectedCurrencyPair[]),
-    baseFeeRate: 0.5,
+    currencyPairFeeInfo: JSON.parse(localStorage.getItem("currencyFee") || "[]") as SelectedCurrencyPair[],
+    baseFeeRate: 0.0,
   },
 
   reducers: {
@@ -15,7 +13,6 @@ export const currencyFeeReducer = createSlice({
       const existingCurrencyPairs = currencyPairFeeInfo.find(
         (pair: SelectedCurrencyPair) => JSON.stringify(pair) === JSON.stringify(action.payload)
       );
-      console.log("payl", action.payload);
 
       if (JSON.stringify(existingCurrencyPairs) !== JSON.stringify(action.payload)) {
         currencyPairFeeInfo = [...currencyPairFeeInfo, action.payload];
@@ -29,7 +26,6 @@ export const currencyFeeReducer = createSlice({
       currencyPairFeeInfo = currencyPairFeeInfo.filter((pair: any, index: number) => {
         return action.payload !== index;
       });
-      console.log("reducer fee", action.payload);
       localStorage.setItem("currencyFee", JSON.stringify(currencyPairFeeInfo));
     },
   },

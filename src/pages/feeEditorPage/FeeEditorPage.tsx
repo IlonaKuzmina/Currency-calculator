@@ -17,11 +17,9 @@ export const FeeEditorPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedCurrencyPair, setSelectedCurrencyPair] = useState<SelectedCurrencyPair>({
-    base: "EUR",
     fromCurrency: "",
     toCurrency: "",
     newFee: "",
-    defaultFee: true,
   });
 
   useEffect(() => {
@@ -47,7 +45,6 @@ export const FeeEditorPage = () => {
     setSelectedCurrencyPair({
       ...selectedCurrencyPair,
       newFee: fee,
-      defaultFee: false,
     });
   };
 
@@ -69,15 +66,15 @@ export const FeeEditorPage = () => {
 
       <PageContentContainer>
         <ConvertionsFeesAdderContainer
-          updateNewFeeHandler={(e) => { updateNewFee(e); }}
-          updateFromCurrencyHandler={(e) => { updateFromCurrency(e); }}
-          updateToCurrencyHandler={(e) => { updateToCurrency(e); }}
+          updateNewFeeHandler={updateNewFee}
+          updateFromCurrencyHandler={updateFromCurrency}
+          updateToCurrencyHandler={updateToCurrency}
           selectedCurrencyPair={selectedCurrencyPair} />
 
         <ConversionFeesListContainer
           buttonStatus={buttonStatus}
           selectedOption={selectedOption}
-          onChangeHandler={(e: string) => { showSelectedOption(e); }}
+          onChangeHandler={showSelectedOption}
           onSubmitHandler={() => {
             dispatch(deleteFeeFromList(Number(selectedOption)));
             setSelectedOption("");

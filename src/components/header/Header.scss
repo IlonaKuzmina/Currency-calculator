@@ -15,6 +15,7 @@
   transition: background 0.3s ease 0s;
   color: rgb(255, 255, 255);
   text-decoration: none;
+  margin: 0 10px;
   &:hover {
     background: rgba(255, 255, 255, 0.2);
   }
@@ -32,24 +33,9 @@
   background-color: #0a146e;
   padding: 10px;
   background: rgb(10, 20, 110);
-  background: -moz-linear-gradient(
-    left,
-    rgb(10, 20, 110) 0%,
-    rgb(10, 20, 110) 50%,
-    rgb(13, 28, 149) 100%
-  );
-  background: -webkit-linear-gradient(
-    left,
-    rgb(10, 20, 110) 0%,
-    rgb(10, 20, 110) 50%,
-    rgb(13, 28, 149) 100%
-  );
-  background: linear-gradient(
-    to right,
-    rgb(10, 20, 110) 0%,
-    rgb(10, 20, 110) 50%,
-    rgb(13, 28, 149) 100%
-  );
+  background: -moz-linear-gradient(left, rgb(10, 20, 110) 0%, rgb(10, 20, 110) 50%, rgb(13, 28, 149) 100%);
+  background: -webkit-linear-gradient(left, rgb(10, 20, 110) 0%, rgb(10, 20, 110) 50%, rgb(13, 28, 149) 100%);
+  background: linear-gradient(to right, rgb(10, 20, 110) 0%, rgb(10, 20, 110) 50%, rgb(13, 28, 149) 100%);
   flex-wrap: wrap;
   align-items: center;
 }

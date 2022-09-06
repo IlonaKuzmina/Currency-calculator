@@ -17,11 +17,11 @@ const FeeListSelect: FC<CurrencySelectProps> = ({ onChangeHandler }) => {
             <select
                 className="select__fee--list"
                 onChange={(e) => onChangeHandler(e.target.value)}>
-                <option defaultChecked>Currency pair with exchange fee</option>
+                <option disabled selected>Currency pair with exchange fee</option>
                 {currencyPairWithFee.currencyPairFeeInfo.map(
                     ({ toCurrency, fromCurrency, newFee }: SelectedCurrencyPair, index: number) => (
                         <option value={index} key={index} className="option">
-                            {fromCurrency} - {toCurrency}{' '}({Number(newFee) * 100}%)
+                            {fromCurrency} - {toCurrency}{' '}({(Number(newFee) * 100).toFixed()} %)
                         </option>
                     )
                 )}
