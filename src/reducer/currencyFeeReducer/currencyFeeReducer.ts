@@ -23,16 +23,21 @@ export const currencyFeeReducer = createSlice({
     },
 
     deleteFeeFromList: ({ currencyPairFeeInfo }, action) => {
-      currencyPairFeeInfo = currencyPairFeeInfo.filter((pair: any, index: number) => {
+      currencyPairFeeInfo = currencyPairFeeInfo.filter((pair: SelectedCurrencyPair, index: number) => {
         return action.payload !== index;
       });
       localStorage.setItem("currencyFee", JSON.stringify(currencyPairFeeInfo));
     },
 
-    editFeeFromList: ({ currencyPairFeeInfo }, action) => {},
+    editFeeFromList: ({ currencyPairFeeInfo }, action) => {
+      const newEditFee = currencyPairFeeInfo.find((pair: SelectedCurrencyPair, index: number) => {
+        return action.payload === index;
+      });
+      console.log(action.payload);
+    },
   },
 });
 
-export const { addNewFeeToList, deleteFeeFromList } = currencyFeeReducer.actions;
+export const { addNewFeeToList, deleteFeeFromList, editFeeFromList } = currencyFeeReducer.actions;
 
 export default currencyFeeReducer.reducer;

@@ -6,7 +6,7 @@ type ButtonProps = {
     label?: string;
     btnClass: 'delete' | 'add' | 'primary' | 'swaper',
     children?: ReactNode;
-    wrapperClass?: 'delete__btn--wrapper' | 'add__btn--wrapper';
+    wrapperClass?: 'delete__btn--wrapper' | 'add__btn--wrapper' | 'save__btn--wrapper';
     disabled?: boolean;
 }
 
