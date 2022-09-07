@@ -1,46 +1,23 @@
-# Getting Started with Create React App
+# Currency converter with the possibility to add currency conversion fees
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- In the project is used: typescript, localstorage, Redux Toolkit, React Router, Hooks, Axios, fast-xml-parser, SCSS;
+- UI section for calculating a conversion that optionally includes a fee, if it is configured.
+<img src="https://user-images.githubusercontent.com/98387598/188852288-a764d4b9-97a1-49a7-a1e1-1b49577c6cd1.PNG" alt="currencyConverter" width="400">
 
-## Available Scripts
+- UI section for editing a list of currency conversion fees.
+<img src="https://user-images.githubusercontent.com/98387598/188852275-1175ccea-6244-42c7-b908-ca805ac1b0ce.PNG" alt="feeEditor" width="400">
 
-In the project directory, you can run:
+- As ECB endpoint doesn't set CORS headers, so in project is configured a proxy.
+- Rate data link: https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
 
-### `npm start`
+## Fee editor section
+- User can add and remove a given currency pair and direction;
+- Fees are applied precisely in the configured direction (e.g. from EUR to GBP), but not in reverse.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Currency Conversion section
+- User can enter the amount to convert and select the currency from and which to convert to.
+- If a fee is configured for the specified currency pair, it is applied to the conversion result.
+- If no fee is set, a default one is used.
+- The default fee is supplied in the application configuration.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Getting Started with Create React App
