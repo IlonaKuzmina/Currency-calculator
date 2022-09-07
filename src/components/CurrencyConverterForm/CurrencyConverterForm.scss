@@ -1,0 +1,26 @@
+.currency__container {
+  display: grid;
+  gap: 4px 16px;
+  grid-auto-flow: column;
+  grid-template-columns: minmax(50px, 1fr) minmax(80px, 1fr) auto minmax(80px px, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+
+.currency__input {
+  margin: 0 auto;
+  text-align: center;
+  padding: 12px;
+  padding-right: 40px;
+  cursor: pointer;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 6px;
+  font: inherit;
+}
+
+@media screen and (max-width: 600px) {
+  .currency__container {
+    display: flex;
+    flex-direction: column;
+  }
+}

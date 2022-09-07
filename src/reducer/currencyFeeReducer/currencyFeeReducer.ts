@@ -5,7 +5,7 @@ export const currencyFeeReducer = createSlice({
   name: "currencyFee",
   initialState: {
     currencyPairFeeInfo: JSON.parse(localStorage.getItem("currencyFee") || "[]") as SelectedCurrencyPair[],
-    baseFeeRate: 0.0,
+    baseFeeRate: 0.02,
   },
 
   reducers: {
@@ -28,6 +28,8 @@ export const currencyFeeReducer = createSlice({
       });
       localStorage.setItem("currencyFee", JSON.stringify(currencyPairFeeInfo));
     },
+
+    editFeeFromList: ({ currencyPairFeeInfo }, action) => {},
   },
 });
 

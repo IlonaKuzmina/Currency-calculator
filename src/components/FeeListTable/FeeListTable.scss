@@ -1,0 +1,27 @@
+.fee__list--table {
+  width: 100%;
+}
+
+.fee__table--line:nth-child(even) {
+  background-color: #f2f7fe;
+}
+
+.fee__table--line:hover {
+  background-color: #ddd;
+}
+
+.fee__table--heading {
+  padding: 8px 12px;
+  background: linear-gradient(to right, rgb(10, 20, 110) 0%, rgb(10, 20, 110) 50%, rgb(13, 28, 149) 100%);
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.fee__table--content {
+  text-align: center;
+}
+
+.fee__table--btn {
+  text-align: center;
+}

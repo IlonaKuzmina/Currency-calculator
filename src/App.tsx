@@ -4,7 +4,6 @@ import './App.css';
 import { CurrencyConverterPage } from './pages/CurrencyConverterPage/CurrencyConverterPage';
 import { FeeEditorPage } from './pages/FeeEditorPage/FeeEditorPage';
 import { Header } from './components/Header/Header';
-import { Footer } from './components/Footer/Footer';
 import { Provider } from 'react-redux';
 import store from './reducer/store';
 
@@ -19,7 +18,6 @@ function App() {
           <Route path="/editor" element={<FeeEditorPage />} />
           <Route path="/calculator" element={<CurrencyConverterPage />} />
         </Routes>
-        <Footer></Footer>
       </Router>
     </Provider>
   );

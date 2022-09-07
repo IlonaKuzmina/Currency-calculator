@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../reducer/store";
-import { deleteFeeFromList } from "../../reducer/currencyFeeReducer/currencyFeeReducer";
-import "./FeeEditorPage.scss";
 import PageHeader from "../../components/PageHeader/PageHeader";
 import { PageContentContainer } from "../../components/PageContentContainer/PageContentContainer";
 import ConversionFeesListContainer from "../../components/ConversionFeesListContainer/ConversionFeesListContainer";
@@ -13,9 +11,7 @@ import { getAllCurrencyFromApi } from "../../reducer/currencyApiReducer/currency
 
 export const FeeEditorPage = () => {
   const focusInput = useRef<HTMLInputElement | null>(null);
-  const [buttonStatus, setButtonStatus] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
-  const [selectedOption, setSelectedOption] = useState("");
   const [selectedCurrencyPair, setSelectedCurrencyPair] = useState<SelectedCurrencyPair>({
     fromCurrency: "",
     toCurrency: "",
@@ -23,7 +19,6 @@ export const FeeEditorPage = () => {
   });
 
   useEffect(() => {
-    buttonDisableHandler();
     dispatch(getAllCurrencyFromApi());
   },)
 
@@ -48,37 +43,18 @@ export const FeeEditorPage = () => {
     });
   };
 
-  const showSelectedOption = (option: string) => {
-    setSelectedOption(option);
-  };
-
-  const buttonDisableHandler = () => {
-    if (selectedOption.length > 0) {
-      setButtonStatus(false);
-    }
-  };
-
   return (
     <MainPageWrapper>
       <PageHeader
         title="XE Fee Editor"
         paragraph="Add, change or remove the fee for a given currency pair and direction" />
-
       <PageContentContainer>
         <ConvertionsFeesAdderContainer
           updateNewFeeHandler={updateNewFee}
           updateFromCurrencyHandler={updateFromCurrency}
           updateToCurrencyHandler={updateToCurrency}
           selectedCurrencyPair={selectedCurrencyPair} />
-
-        <ConversionFeesListContainer
-          buttonStatus={buttonStatus}
-          selectedOption={selectedOption}
-          onChangeHandler={showSelectedOption}
-          onSubmitHandler={() => {
-            dispatch(deleteFeeFromList(Number(selectedOption)));
-            setSelectedOption("");
-          }} />
+        <ConversionFeesListContainer />
       </PageContentContainer>
     </MainPageWrapper>
   );

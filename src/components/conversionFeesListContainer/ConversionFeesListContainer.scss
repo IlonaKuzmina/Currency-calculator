@@ -1,20 +1,4 @@
 .fee__list--container {
-  display: grid;
-  grid-template-columns: 70% 30%;
-  flex-direction: row;
-  align-items: center;
-  justify-items: start;
-}
-
-.delete__fee--container {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-
-@media screen and (max-width: 500px) {
-  .fee__list--container {
-    display: flex;
-    flex-direction: column;
-  }
+display: flex;
+flex-direction: column;
 }
