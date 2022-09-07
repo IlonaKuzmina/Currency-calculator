@@ -31,12 +31,12 @@ export const CurrencyConverterForm: FC<CurrencyConverterFormProps> = ({ enteredA
                         onChangeHandler={updateFromCurrencyHandler}></CurrencySelect>
                 </div>
 
-                <div>
+                {/* <div>
                     <Label /> <br />
                     <Button btnClass="swaper">
                         <img className="swaper__image" src="/assets/logo/swap.png" alt="swap"></img>
                     </Button>
-                </div>
+                </div> */}
 
                 <div>
                     <Label label="To" /> <br />

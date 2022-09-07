@@ -14,9 +14,9 @@ function App() {
       <Router>
         <Header></Header>
         <Routes>
-          <Route path="/" element={<FeeEditorPage />} />
-          <Route path="/editor" element={<FeeEditorPage />} />
+          <Route path="/" element={<CurrencyConverterPage />} />
           <Route path="/calculator" element={<CurrencyConverterPage />} />
+          <Route path="/editor" element={<FeeEditorPage />} />
         </Routes>
       </Router>
     </Provider>

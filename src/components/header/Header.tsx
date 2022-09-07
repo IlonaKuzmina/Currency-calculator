@@ -15,8 +15,8 @@ export const Header = () => {
             </div>
 
             <div className='navigation__links--wrapper'>
-                <NavLink className={({ isActive }) => getActiveLinkClassName(isActive)} to="/editor">Fee Editor</NavLink>
                 <NavLink className={({ isActive }) => getActiveLinkClassName(isActive)} to="/calculator">Calculator</NavLink>
+                <NavLink className={({ isActive }) => getActiveLinkClassName(isActive)} to="/editor">Fee Editor</NavLink>
             </div>
 
             <div className='navigation__btn--wrapper'>
