@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { convertFromEuroToX, convertFromXToEuro, convertFromXToY } from "../../calculator/calculator";
+import { convertFromEuroToX, convertFromXToEuro, convertFromXToY } from "../../utils/currencyConverter/calculator";
 import Button from "../../components/Button/Button";
 import CurrencySelect from "../../components/CurrencySelect/CurrencySelect";
 import Label from "../../components/Label/Label";
@@ -23,8 +23,8 @@ export const CurrencyConverterPage = () => {
     const currencyFee = useSelector(({ currencyFee }: RootState) => currencyFee);
     const [enteredAmount, setEnteredAmount] = useState("");
     const [enteredValue, setEnteredValue] = useState<EnteredValueDetails[]>([]);
-    const [toCurrency, setToCurrency] = useState("");
-    const [fromCurrency, setFromCurrency] = useState("");
+    const [toCurrency, setToCurrency] = useState("EUR");
+    const [fromCurrency, setFromCurrency] = useState("EUR");
     const [convertResult, setConvertResult] = useState("");
     const [calculatedConvertFee, setCalculatedConvertFee] = useState('');
 
@@ -36,28 +36,32 @@ export const CurrencyConverterPage = () => {
         setToCurrency(option);
     };
 
+    const findToCurrRate = () => {
+        return (currencyRate.find((currency: any) => currency['@_currency'] === toCurrency))['@_rate'];
+    }
+
+    const findFromCurrRate = () => {
+        return (currencyRate.find((currency: any) => currency['@_currency'] === fromCurrency))['@_rate'];
+    }
+
     const convertValue = () => {
         const isAddedNewFee = currencyFee.currencyPairFeeInfo
-            .find((curPair) => curPair.fromCurrency === fromCurrency && curPair.toCurrency === toCurrency)
+            .find((curPair) => curPair.fromCurrency === fromCurrency && curPair.toCurrency === toCurrency);
         const enteredCurrencyPairConvertRate = isAddedNewFee ? Number(isAddedNewFee?.newFee) : currencyFee.baseFeeRate;
 
         const handleFromEurCurrency = fromCurrency === 'EUR';
         const handleToEurCurrency = toCurrency === 'EUR';
 
         if (handleFromEurCurrency) {
-            const findToCurrRate = (currencyRate.find((currency: any) => currency['@_currency'] === toCurrency))['@_rate'];
-            setConvertResult(convertFromEuroToX(enteredAmount, findToCurrRate, enteredCurrencyPairConvertRate))
+            setConvertResult(convertFromEuroToX(enteredAmount, findToCurrRate(), enteredCurrencyPairConvertRate));
         } else if (!handleFromEurCurrency && handleToEurCurrency) {
-            const findFromCurrRate = (currencyRate.find((currency: any) => currency['@_currency'] === fromCurrency))['@_rate'];
-            setConvertResult(convertFromXToEuro(enteredAmount, findFromCurrRate, enteredCurrencyPairConvertRate))
+            setConvertResult(convertFromXToEuro(enteredAmount, findFromCurrRate(), enteredCurrencyPairConvertRate));
         } else {
-            const findToCurrRate = (currencyRate.find((currency: any) => currency['@_currency'] === toCurrency))['@_rate'];
-            const findFromCurrRate = (currencyRate.find((currency: any) => currency['@_currency'] === fromCurrency))['@_rate'];
-            setConvertResult(convertFromXToY(enteredAmount, findToCurrRate, findFromCurrRate, enteredCurrencyPairConvertRate));
+            setConvertResult(convertFromXToY(enteredAmount, findToCurrRate(), findFromCurrRate(), enteredCurrencyPairConvertRate));
         }
 
-        const convFeeToProcentage = (enteredCurrencyPairConvertRate * 100).toFixed()
-        setCalculatedConvertFee(`Conversion fee: ${convFeeToProcentage} %`)
+        const convFeeToProcentage = (enteredCurrencyPairConvertRate * 100).toFixed();
+        setCalculatedConvertFee(`Conversion fee: ${convFeeToProcentage} %`);
     };
 
     return (

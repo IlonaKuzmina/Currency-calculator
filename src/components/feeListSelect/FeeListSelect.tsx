@@ -21,11 +21,25 @@ const FeeListSelect: FC<CurrencySelectProps> = ({ onChangeHandler }) => {
                 {currencyPairWithFee.currencyPairFeeInfo.map(
                     ({ toCurrency, fromCurrency, newFee }: SelectedCurrencyPair, index: number) => (
                         <option value={index} key={index} className="option">
-                            {fromCurrency} - {toCurrency}{' '}({(Number(newFee) * 100).toFixed()} %)
+                            {fromCurrency} - {toCurrency}{' '}{newFee}
                         </option>
                     )
                 )}
             </select>
+
+            {/* <div>
+                <table>
+                    <th>List of currency conversion fees</th>
+                    {currencyPairWithFee.currencyPairFeeInfo.map(
+                        ({ toCurrency, fromCurrency, newFee }: SelectedCurrencyPair, index: number) => (
+                            <tr value={index} key={index} className="option">
+                                <td>{fromCurrency}</td><td>{toCurrency}</td><td>{newFee}</td><td></td>
+                            </tr>
+                        )
+                    )}
+                </table>
+            </div> */}
+
         </>
     )
 }

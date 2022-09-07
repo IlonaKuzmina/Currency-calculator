@@ -24,7 +24,7 @@ export const FeeEditorPage = () => {
 
   useEffect(() => {
     buttonDisableHandler();
-    dispatch(getAllCurrencyFromApi())
+    dispatch(getAllCurrencyFromApi());
   },)
 
   useEffect(() => {

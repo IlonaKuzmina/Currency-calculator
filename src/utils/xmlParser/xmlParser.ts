@@ -1,5 +1,5 @@
 import { XMLParser } from "fast-xml-parser";
-import { CubeCurrency, CurrencyApiResult } from "../types/apiResultTypes";
+import { CubeCurrency, CurrencyApiResult } from "../../types/apiResultTypes";
 
 export const parseXmlToJs = (currency: any) => {
   const options = {
