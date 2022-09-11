@@ -11,7 +11,7 @@ type CurrencySelectProps = {
 }
 
 const CurrencySelect: FC<CurrencySelectProps> = ({ onChangeHandler }) => {
-    const currencyName = useSelector(({ currencyApi }: RootState) => currencyApi);
+    const currencyName = useSelector(({ currencyApi }: RootState) => currencyApi.currencyNameRate);
 
     return (
         <>
@@ -23,8 +23,8 @@ const CurrencySelect: FC<CurrencySelectProps> = ({ onChangeHandler }) => {
                 }}>
                 <option defaultChecked value="">Select currency</option>
                 <option value={'EUR'}>EUR</option>
-                {currencyName.currencyNameRate?.map((cur: CubeCurrencyResult) => (
-                    <option key={cur['@_currency']} value={cur['@_currency']}>{cur['@_currency']}</option>))}
+                {currencyName?.map((cur: CubeCurrencyResult) => (
+                    <option key={cur["@_"]['@_currency']} value={cur["@_"]['@_currency']}>{cur["@_"]['@_currency']}</option>))}
             </select>
         </>
     )

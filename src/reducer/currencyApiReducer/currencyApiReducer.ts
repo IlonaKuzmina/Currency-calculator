@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { CubeCurrencyResult } from "../../types/apiResultTypes";
 import { parseXmlToJs } from "../../utils/xmlParser/xmlParser";
 
 export const currencyApiReducer = createSlice({
   name: "currencyApi",
   initialState: {
     lastUpdateTime: localStorage.getItem("lastUpdateTime"),
-    currencyNameRate: JSON.parse(localStorage.getItem("currencyNameRate") || "{}"),
+    // lastUpdateTime: "",
+    currencyNameRate: JSON.parse(localStorage.getItem("currencyNameRate") || "[]") as CubeCurrencyResult[],
   },
 
   reducers: {
@@ -21,9 +23,14 @@ export const currencyApiReducer = createSlice({
           console.error(`Error: ${error}`);
         });
     },
+
+    getnewdata: (store) => {
+      // getAllCurrencyFromApi();
+      // store.lastUpdateTime = localStorage.getItem("lastUpdateTime");
+    },
   },
 });
 
-export const { getAllCurrencyFromApi } = currencyApiReducer.actions;
+export const { getAllCurrencyFromApi, getnewdata } = currencyApiReducer.actions;
 
 export default currencyApiReducer.reducer;

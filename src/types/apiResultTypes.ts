@@ -20,14 +20,14 @@ export type EnvelopeCube = {
 
 export type CubeCube = {
   ["@_"]: CubeTime;
-  ["Cube"]: CubeCurrency[];
-};
-
-export type CubeCurrency = {
-  ["@_"]: CubeCurrencyResult;
+  ["Cube"]: CubeCurrencyResult[];
 };
 
 export type CubeCurrencyResult = {
+  ["@_"]: CubeCurrencyResultIn;
+};
+
+export type CubeCurrencyResultIn = {
   ["@_currency"]: string;
   ["@_rate"]: string;
 };

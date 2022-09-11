@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../reducer/store";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../reducer/store";
 import { convertFromEuroToX, convertFromXToEuro, convertFromXToY } from "../../utils/currencyConverter/currencyConverter";
 import { MainPageWrapper } from "../../components/MainPageWrapper/MainPageWrapper";
 import { PageContentContainer } from "../../components/PageContentContainer/PageContentContainer";
@@ -9,6 +9,8 @@ import SmallTitle from "../../components/SmallTitle/SmallTitle";
 import { Footer } from "../../components/Footer/Footer";
 import { ConverterResult } from "../../components/ConverterResult/ConverterResult";
 import { CurrencyConverterForm } from "../../components/CurrencyConverterForm/CurrencyConverterForm";
+import { getAllCurrencyFromApi, getnewdata } from "../../reducer/currencyApiReducer/currencyApiReducer";
+import { CubeCurrencyResult } from "../../types/apiResultTypes";
 
 export type EnteredValueDetails = {
     value: string;
@@ -26,6 +28,14 @@ export const CurrencyConverterPage = () => {
     const [fromCurrency, setFromCurrency] = useState("EUR");
     const [convertResult, setConvertResult] = useState("");
     const [calculatedConvertFee, setCalculatedConvertFee] = useState('');
+    const dispatch = useDispatch<AppDispatch>();
+
+    useEffect(() => {
+        dispatch(getAllCurrencyFromApi());
+    },)
+    // useEffect(() => {
+    //     dispatch(getnewdata());
+    // },)
 
     const updateFromCurrency = (option: string) => {
         setFromCurrency(option);
@@ -36,11 +46,13 @@ export const CurrencyConverterPage = () => {
     };
 
     const findToCurrRate = () => {
-        return (currencyRate.find((currency: any) => currency['@_currency'] === toCurrency))['@_rate'];
+        const findToCurrancy = currencyRate.find((currency: CubeCurrencyResult) => currency["@_"]["@_currency"] === toCurrency)
+        return findToCurrancy!["@_"]['@_rate'];
     }
 
     const findFromCurrRate = () => {
-        return (currencyRate.find((currency: any) => currency['@_currency'] === fromCurrency))['@_rate'];
+        const findFromCurrancy = currencyRate.find((currency: CubeCurrencyResult) => currency["@_"]['@_currency'] === fromCurrency)
+        return findFromCurrancy!["@_"]['@_rate'];
     }
 
     const convertValue = () => {

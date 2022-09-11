@@ -30,14 +30,19 @@ export const currencyFeeReducer = createSlice({
     },
 
     editFeeFromList: ({ currencyPairFeeInfo }, action) => {
-      const newEditFee = currencyPairFeeInfo.find((pair: SelectedCurrencyPair, index: number) => {
-        return action.payload === index;
-      });
-      console.log(action.payload);
+      const newEditedList = [...currencyPairFeeInfo, (currencyPairFeeInfo[action.payload].feePairBeingEdited = true)];
+
+      localStorage.setItem("currencyFee", JSON.stringify(newEditedList));
+    },
+
+    saveFeeFromList: ({ currencyPairFeeInfo }, action) => {
+      const newValue = action.payload;
+      const newEditedList = [...currencyPairFeeInfo, (currencyPairFeeInfo[newValue.index].feePairBeingEdited = false)];
+      localStorage.setItem("currencyFee", JSON.stringify(newEditedList));
     },
   },
 });
 
-export const { addNewFeeToList, deleteFeeFromList, editFeeFromList } = currencyFeeReducer.actions;
+export const { addNewFeeToList, deleteFeeFromList, editFeeFromList, saveFeeFromList } = currencyFeeReducer.actions;
 
 export default currencyFeeReducer.reducer;
