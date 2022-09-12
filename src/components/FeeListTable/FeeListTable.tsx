@@ -19,9 +19,7 @@ const FeeListTable = () => {
         newEditedFee: "",
     });
 
-    const sd = () => {
-        console.log(newEditedPair)
-    }
+    useEffect(() => { }, [dispatch, newEditedPair])
 
     return (
         <>
@@ -68,7 +66,7 @@ const FeeListTable = () => {
                                                 label="Save"
                                                 wrapperClass="save__btn--wrapper"
                                                 btnClass="delete"
-                                                onClick={() => { dispatch(saveFeeFromList(newEditedPair)); sd(); console.log(newEditedPair) }}>
+                                                onClick={() => { dispatch(saveFeeFromList(newEditedPair)); }}>
                                             </Button>
                                         </td>
                                     </>
@@ -88,7 +86,7 @@ const FeeListTable = () => {
                                                 label="Edit"
                                                 wrapperClass="delete__btn--wrapper"
                                                 btnClass="delete"
-                                                onClick={() => { dispatch(editFeeFromList(index)); console.log(index) }}>
+                                                onClick={() => { dispatch(editFeeFromList(index)); }}>
                                             </Button>
                                         </td>
                                     </>

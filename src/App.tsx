@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
 import { CurrencyConverterPage } from './pages/CurrencyConverterPage/CurrencyConverterPage';
 import { FeeEditorPage } from './pages/FeeEditorPage/FeeEditorPage';
 import { Header } from './components/Header/Header';
-import { Provider } from 'react-redux';
-import store from './reducer/store';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from './reducer/store';
+import { getAllCurrencyFromApi } from './reducer/currencyApiReducer/currencyApiReducer';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(getAllCurrencyFromApi());
+  }, [dispatch])
 
   return (
-    <Provider store={store}>
+    <>
       <Router>
         <Header></Header>
         <Routes>
@@ -19,7 +25,7 @@ function App() {
           <Route path="/editor" element={<FeeEditorPage />} />
         </Routes>
       </Router>
-    </Provider>
+    </>
   );
 }
 

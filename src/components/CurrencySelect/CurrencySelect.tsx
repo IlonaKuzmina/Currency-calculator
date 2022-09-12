@@ -1,7 +1,5 @@
-import React, { FC, ReactNode } from 'react'
+import React, { FC, ReactNode, useEffect, useState } from 'react'
 import './CurrencySelect.scss';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../reducer/store';
 import { CubeCurrencyResult } from '../../types/apiResultTypes';
 
 type CurrencySelectProps = {
@@ -11,7 +9,11 @@ type CurrencySelectProps = {
 }
 
 const CurrencySelect: FC<CurrencySelectProps> = ({ onChangeHandler }) => {
-    const currencyName = useSelector(({ currencyApi }: RootState) => currencyApi.currencyNameRate);
+    const [currencyName, setCurrencyName] = useState<CubeCurrencyResult[]>([]);
+
+    useEffect(() => {
+        setCurrencyName(JSON.parse(localStorage.getItem("currencyNameRate") || "[]") as CubeCurrencyResult[])
+    }, [])
 
     return (
         <>

@@ -7,7 +7,6 @@ export const currencyApiReducer = createSlice({
   name: "currencyApi",
   initialState: {
     lastUpdateTime: localStorage.getItem("lastUpdateTime"),
-    // lastUpdateTime: "",
     currencyNameRate: JSON.parse(localStorage.getItem("currencyNameRate") || "[]") as CubeCurrencyResult[],
   },
 
@@ -23,14 +22,9 @@ export const currencyApiReducer = createSlice({
           console.error(`Error: ${error}`);
         });
     },
-
-    getnewdata: (store) => {
-      // getAllCurrencyFromApi();
-      // store.lastUpdateTime = localStorage.getItem("lastUpdateTime");
-    },
   },
 });
 
-export const { getAllCurrencyFromApi, getnewdata } = currencyApiReducer.actions;
+export const { getAllCurrencyFromApi } = currencyApiReducer.actions;
 
 export default currencyApiReducer.reducer;

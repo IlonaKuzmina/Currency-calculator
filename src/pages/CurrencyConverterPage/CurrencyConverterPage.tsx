@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../reducer/store";
+import { useSelector } from "react-redux";
+import { RootState } from "../../reducer/store";
 import { convertFromEuroToX, convertFromXToEuro, convertFromXToY } from "../../utils/currencyConverter/currencyConverter";
 import { MainPageWrapper } from "../../components/MainPageWrapper/MainPageWrapper";
 import { PageContentContainer } from "../../components/PageContentContainer/PageContentContainer";
@@ -9,7 +9,6 @@ import SmallTitle from "../../components/SmallTitle/SmallTitle";
 import { Footer } from "../../components/Footer/Footer";
 import { ConverterResult } from "../../components/ConverterResult/ConverterResult";
 import { CurrencyConverterForm } from "../../components/CurrencyConverterForm/CurrencyConverterForm";
-import { getAllCurrencyFromApi, getnewdata } from "../../reducer/currencyApiReducer/currencyApiReducer";
 import { CubeCurrencyResult } from "../../types/apiResultTypes";
 
 export type EnteredValueDetails = {
@@ -19,7 +18,6 @@ export type EnteredValueDetails = {
 };
 
 export const CurrencyConverterPage = () => {
-    const lastUpdateTime = useSelector(({ currencyApi }: RootState) => currencyApi.lastUpdateTime);
     const currencyRate = useSelector(({ currencyApi }: RootState) => currencyApi.currencyNameRate);
     const currencyFee = useSelector(({ currencyFee }: RootState) => currencyFee);
     const [enteredAmount, setEnteredAmount] = useState("");
@@ -28,14 +26,12 @@ export const CurrencyConverterPage = () => {
     const [fromCurrency, setFromCurrency] = useState("EUR");
     const [convertResult, setConvertResult] = useState("");
     const [calculatedConvertFee, setCalculatedConvertFee] = useState('');
-    const dispatch = useDispatch<AppDispatch>();
+    const [lastUpdateTime, setLastUpdateTime] = useState("");
+
 
     useEffect(() => {
-        dispatch(getAllCurrencyFromApi());
-    },)
-    // useEffect(() => {
-    //     dispatch(getnewdata());
-    // },)
+        setLastUpdateTime(localStorage.getItem("lastUpdateTime") || '')
+    }, [])
 
     const updateFromCurrency = (option: string) => {
         setFromCurrency(option);
