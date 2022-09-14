@@ -27,7 +27,8 @@ export const FeeEditorForm: FC<ConvertionsFeesAdderContainerProps> = ({ updateFr
   }, []);
 
   return (
-    <form onChange={() => { dispatch(addNewFeeToList(selectedCurrencyPair)); }}>
+    <form 
+    onSubmit={(e)=> {e.preventDefault()}}>
       <div className="editor__container">
         <div>
           <Label label="Fee" /> <br />

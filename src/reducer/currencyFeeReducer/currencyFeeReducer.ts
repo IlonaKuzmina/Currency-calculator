@@ -9,25 +9,23 @@ export const currencyFeeReducer = createSlice({
   },
 
   reducers: {
-    addNewFeeToList: ({ currencyPairFeeInfo }, action) => {
-      const existingCurrencyPairs = currencyPairFeeInfo.find(
+    addNewFeeToList: (state, action) => {
+      const existingCurrencyPairs = state.currencyPairFeeInfo.find(
         (pair: SelectedCurrencyPair) => JSON.stringify(pair) === JSON.stringify(action.payload)
       );
 
       if (JSON.stringify(existingCurrencyPairs) !== JSON.stringify(action.payload)) {
-        currencyPairFeeInfo = [...currencyPairFeeInfo, action.payload];
-        localStorage.setItem("currencyFee", JSON.stringify(currencyPairFeeInfo));
+        state.currencyPairFeeInfo = [...state.currencyPairFeeInfo, action.payload];
       }
-      currencyPairFeeInfo = [...currencyPairFeeInfo];
-      localStorage.setItem("currencyFee", JSON.stringify(currencyPairFeeInfo));
+      localStorage.setItem("currencyFee", JSON.stringify(state.currencyPairFeeInfo));
     },
 
-    deleteFeeFromList: ({ currencyPairFeeInfo }, action) => {
-      currencyPairFeeInfo = currencyPairFeeInfo.filter((pair: SelectedCurrencyPair, index: number) => {
+    deleteFeeFromList: (state, action) => {
+      state.currencyPairFeeInfo = state.currencyPairFeeInfo.filter((pair: SelectedCurrencyPair, index: number) => {
         return action.payload !== index;
       });
 
-      localStorage.setItem("currencyFee", JSON.stringify(currencyPairFeeInfo));
+      localStorage.setItem("currencyFee", JSON.stringify(state.currencyPairFeeInfo));
     },
 
     editFeeFromList: ({ currencyPairFeeInfo }, action) => {
